@@ -183,3 +183,6 @@ whitelist.json
 
 # Cache
 usercache.json
+
+# .env
+.env
