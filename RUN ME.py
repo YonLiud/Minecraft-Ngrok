@@ -4,22 +4,34 @@ from discord.ext import commands
 import time
 import datetime
 bot = commands.Bot(command_prefix='>')
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 
-config = load_dotenv(".env")
+config = dotenv_values(".env")
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Ngrok Tunnel"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Ngrok Tunnels"))
     print("Bot Ready")
     await send_data()
+    mc.server.wait()
+    await stop_server_msg()
 
+async def stop_server_msg():
+    channel = bot.get_channel(709057578486726720)
+    time.sleep(2)
+    embed = discord.Embed(title=f"Minecraft Server", timestamp=datetime.datetime.utcnow(), color=discord.Color.red(), )
+    embed.add_field(name="SERVER CLOSED", value=mc.minecraft_tunnels)
+    # embed.set_thumbnail(url=f"{ctx.guild.icon}")
+    embed.set_thumbnail(url="https://img.icons8.com/bubbles/452/minecraft-logo--v1.png")
+    await channel.send(embed=embed)
+    quit()
+    
 
 async def send_data():
     channel = bot.get_channel(709057578486726720)
     await channel.send("Server has started.\nPlease wait for a tunnel to open!")
     time.sleep(2)
-    embed = discord.Embed(title=f"Ngrok Tunnel", timestamp=datetime.datetime.utcnow(), color=discord.Color.blue(), )
+    embed = discord.Embed(title=f"Minecraft Server", timestamp=datetime.datetime.utcnow(), color=discord.Color.blue(), )
     embed.add_field(name="Ip address: ", value=mc.minecraft_tunnels)
     # embed.set_thumbnail(url=f"{ctx.guild.icon}")
     embed.set_thumbnail(url="https://img.icons8.com/bubbles/452/minecraft-logo--v1.png")
