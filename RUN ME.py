@@ -6,7 +6,7 @@ import datetime
 bot = commands.Bot(command_prefix='>')
 from dotenv import dotenv_values
 
-channel = bot.get_channel(709057578486726720) # <- ID OF CHANNEL GOES HERE
+channelid = 709057578486726720 #? <- CHANNEL ID GOES HERE
 
 config = dotenv_values(".env")
 
@@ -19,6 +19,7 @@ async def on_ready():
     await stop_server_msg()
 
 async def stop_server_msg():
+    channel = bot.get_channel(channelid)
     time.sleep(2)
     embed = discord.Embed(title=f"Minecraft Server", timestamp=datetime.datetime.utcnow(), color=discord.Color.red(), )
     embed.add_field(name="SERVER CLOSED", value=mc.minecraft_tunnels)
@@ -29,6 +30,7 @@ async def stop_server_msg():
     
 
 async def send_data():
+    channel = bot.get_channel(channelid)
     await channel.send("Server has started.\nPlease wait for a tunnel to open!")
     time.sleep(2)
     embed = discord.Embed(title=f"Minecraft Server", timestamp=datetime.datetime.utcnow(), color=discord.Color.blue(), )
