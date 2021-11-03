@@ -7,9 +7,6 @@ A python script to start a minecraft server with a tunnel to enable connections 
 * Java 16
 * Python 3
 * Windows Operating System
-* Discord Bot Application
-
-
 ### Installing Packages
 
 ```sh
