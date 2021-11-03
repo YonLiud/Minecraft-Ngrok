@@ -1,3 +1,1 @@
-discord
-python-dotenv
 pyngrok
